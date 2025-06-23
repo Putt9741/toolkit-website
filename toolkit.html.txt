@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToolKit - All-in-One Web Tools</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+color: #fff;
+min-height: 100vh;
+padding: 20px;
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+header {
+text-align: center;
+padding: 30px 0;
+margin-bottom: 30px;
+}
+
+.logo {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 15px;
+margin-bottom: 10px;
+}
+
+.logo i {
+font-size: 2.5rem;
+color: #4dabf7;
+}
+
+h1 {
+font-size: 3rem;
+margin-bottom: 10px;
+text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+font-size: 1.2rem;
+opacity: 0.9;
+max-width: 600px;
+margin: 0 auto;
+}
+
+.tool-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 25px;
+margin-bottom: 40px;
+}
+
+.tool-card {
+background: rgba(255, 255, 255, 0.1);
+backdrop-filter: blur(10px);
+border-radius: 15px;
+padding: 25px;
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+border: 1px solid rgba(255, 255, 255, 0.1);
+transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+background: rgba(255, 255, 255, 0.15);
+}
+
+.tool-header {
+display: flex;
+align-items: center;
+margin-bottom: 20px;
+padding-bottom: 15px;
+border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tool-header i {
+font-size: 1.8rem;
+margin-right: 15px;
+color: #4dabf7;
+}
+
+.tool-header h2 {
+font-size: 1.5rem;
+}
+
+.tool-content {
+margin-top: 15px;
+}
+
+.input-group {
+margin-bottom: 15px;
+}
+
+label {
+display: block;
+margin-bottom: 8px;
+font-weight: 500;
+}
+
+input, select, textarea {
+width: 100%;
+padding: 12px 15px;
+border-radius: 8px;
+border: none;
+background: rgba(0, 0, 0, 0.3);
+color: white;
+font-size: 1rem;
+}
+
+button {
+background: linear-gradient(to right, #4dabf7, #3b5bdb);
+color: white;
+border: none;
+padding: 12px 20px;
+border-radius: 8px;
+cursor: pointer;
+font-size: 1rem;
+font-weight: 600;
+transition: all 0.3s ease;
+width: 100%;
+margin-top: 10px;
+}
+
+button:hover {
+background: linear-gradient(to right, #3b5bdb, #4dabf7);
+transform: scale(1.02);
+}
+
+.result {
+margin-top: 20px;
+padding: 15px;
+background: rgba(0, 0, 0, 0.2);
+border-radius: 8px;
+min-height: 60px;
+display: flex;
+align-items: center;
+font-size: 1.1rem;
+}
+
+.calculator {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 10px;
+}
+
+.calculator button {
+padding: 15px 0;
+}
+
+.calculator-display {
+grid-column: span 4;
+text-align: right;
+padding: 15px;
+background: rgba(0, 0, 0, 0.3);
+border-radius: 8px;
+font-size: 1.5rem;
+margin-bottom: 10px;
+}
+
+.color-preview {
+width: 100%;
+height: 80px;
+border-radius: 8px;
+margin: 15px 0;
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.footer {
+text-align: center;
+padding: 30px 0;
+margin-top: 20px;
+border-top: 1px solid rgba(255, 255, 255, 0.2);
+font-size: 0.9rem;
+opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+.tool-grid {
+grid-template-columns: 1fr;
+}
+
+h1 {
+font-size: 2.2rem;
+}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<div class="logo">
+<i class="fas fa-tools"></i>
+<h1>ToolKit</h1>
+</div>
+<p class="subtitle">Your all-in-one solution for everyday tools. Free, fast, and easy to use!</p>
+</header>
+
+<div class="tool-grid">
+<!-- Calculator Tool -->
+<div class="tool-card">
+<div class="tool-header">
+<i class="fas fa-calculator"></i>
+<h2>Calculator</h2>
+</div>
+<div class="tool-content">
+<div class="calculator">
+<div class="calculator-display" id="calc-display">0</div>
+<button onclick="appendToDisplay('7')">7</button>
+<button onclick="appendToDisplay('8')">8</button>
+<button onclick="appendToDisplay('9')">9</button>
+<button onclick="appendToDisplay('/')">/</button>
+<button onclick="appendToDisplay('4')">4</button>
+<button onclick="appendToDisplay('5')">5</button>
+<button onclick="appendToDisplay('6')">6</button>
+<button onclick="appendToDisplay('*')">×</button>
+<button onclick="appendToDisplay('1')">1</button>
+<button onclick="appendToDisplay('2')">2</button>
+<button onclick="appendToDisplay('3')">3</button>
+<button onclick="appendToDisplay('-')">-</button>
+<button onclick="appendToDisplay('0')">0</button>
+<button onclick="appendToDisplay('.')">.</button>
+<button onclick="calculate()">=</button>
+<button onclick="appendToDisplay('+')">+</button>
+<button onclick="clearDisplay()" style="grid-column: span 2; background: linear-gradient(to right, #e74c3c, #c0392b);">C</button>
+<button onclick="backspace()" style="grid-column: span 2; background: linear-gradient(to right, #f39c12, #d35400);">⌫</button>
+</div>
+</div>
+</div>
+
+<!-- Unit Converter -->
+<div class="tool-card">
+<div class="tool-header">
+<i class="fas fa-exchange-alt"></i>
+<h2>Unit Converter</h2>
+</div>
+<div class="tool-content">
+<div class="input-group">
+<label>From:</label>
+<input type="number" id="converter-input" placeholder="Enter value" value="1">
+</div>
+
+<div class="input-group">
+<label>Convert from:</label>
+<select id="from-unit">
+<option value="meter">Meters</option>
+<option value="kilometer">Kilometers</option>
+<option value="centimeter">Centimeters</option>
+<option value="mile">Miles</option>
+<option value="inch">Inches</option>
+<option value="celsius">Celsius</option>
+<option value="fahrenheit">Fahrenheit</option>
+<option value="kilogram">Kilograms</option>
+<option value="pound">Pounds</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>To:</label>
+<select id="to-unit">
+<option value="kilometer">Kilometers</option>
+<option value="meter">Meters</option>
+<option value="centimeter">Centimeters</option>
+<option value="mile">Miles</option>
+<option value="inch">Inches</option>
+<option value="fahrenheit">Fahrenheit</option>
+<option value="celsius">Celsius</option>
+<option value="pound">Pounds</option>
+<option value="kilogram">Kilograms</option>
+</select>
+</div>
+
+<button onclick="convertUnits()">Convert</button>
+
+<div class="result" id="converter-result">
+Result will appear here
+</div>
+</div>
+</div>
+
+<!-- Text Tools -->
+<div class="tool-card">
+<div class="tool-header">
+<i class="fas fa-font"></i>
+<h2>Text Tools</h2>
+</div>
+<div class="tool-content">
+<div class="input-group">
+<label>Enter Text:</label>
+<textarea id="text-input" rows="3" placeholder="Type or paste your text here">Hello World! This is a sample text.</textarea>
+</div>
+
+<div class="input-group">
+<label>Action:</label>
+<select id="text-action">
+<option value="uppercase">Convert to UPPERCASE</option>
+<option value="lowercase">Convert to lowercase</option>
+<option value="capitalize">Capitalize First Letter</option>
+<option value="reverse">Reverse Text</option>
+<option value="count">Count Characters</option>
+<option value="remove-spaces">Remove Extra Spaces</option>
+</select>
+</div>
+
+<button onclick="processText()">Process Text</button>
+
+<div class="result" id="text-result">
+Result will appear here
+</div>
+</div>
+</div>
+
+<!-- Color Tools -->
+<div class="tool-card">
+<div class="tool-header">
+<i class="fas fa-palette"></i>
+<h2>Color Tools</h2>
+</div>
+<div class="tool-content">
+<div class="input-group">
+<label>Select a Color:</label>
+<input type="color" id="color-picker" value="#4dabf7">
+</div>
+
+<div class="color-preview" id="color-preview"></div>
+
+<div class="input-group">
+<label>Color Format:</label>
+<select id="color-format">
+<option value="hex">HEX (#4dabf7)</option>
+<option value="rgb">RGB (77, 171, 247)</option>
+<option value="hsl">HSL (206°, 91%, 64%)</option>
+</select>
+</div>
+
+<button onclick="getColorValue()">Get Color Value</button>
+
+<div class="result" id="color-result">
+#4dabf7
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer">
+<p>© 2023 ToolKit - All-in-One Web Tools | Created with ❤️ for everyone</p>
+<p>All tools are completely free to use. No registration required.</p>
+</div>
+</div>
+
+<script>
+// Calculator functions
+let currentInput = '0';
+let shouldResetDisplay = false;
+
+function updateDisplay() {
+const display = document.getElementById('calc-display');
+display.textContent = currentInput;
+}
+
+function appendToDisplay(value) {
+if (currentInput === '0' || shouldResetDisplay) {
+currentInput = value;
+shouldResetDisplay = false;
+} else {
+currentInput += value;
+}
+updateDisplay();
+}
+
+function clearDisplay() {
+currentInput = '0';
+updateDisplay();
+}
+
+function backspace() {
+currentInput = currentInput.slice(0, -1);
+if (currentInput === '') currentInput = '0';
+updateDisplay();
+}
+
+function calculate() {
+try {
+currentInput = eval(currentInput.replace('×', '*')).toString();
+} catch (error) {
+currentInput = 'Error';
+}
+shouldResetDisplay = true;
+updateDisplay();
+}
+
+// Unit Converter functions
+function convertUnits() {
+const inputValue = parseFloat(document.getElementById('converter-input').value);
+const fromUnit = document.getElementById('from-unit').value;
+const toUnit = document.getElementById('to-unit').value;
+let result;
+
+// Length conversions
+if (fromUnit === 'meter' && toUnit === 'kilometer') result = inputValue / 1000;
+else if (fromUnit === 'meter' && toUnit === 'centimeter') result = inputValue * 100;
+else if (fromUnit === 'meter' && toUnit === 'mile') result = inputValue / 1609.34;
+else if (fromUnit === 'meter' && toUnit === 'inch') result = inputValue * 39.3701;
+
+else if (fromUnit === 'kilometer' && toUnit === 'meter') result = inputValue * 1000;
+else if (fromUnit === 'kilometer' && toUnit === 'centimeter') result = inputValue * 100000;
+else if (fromUnit === 'kilometer' && toUnit === 'mile') result = inputValue / 1.60934;
+else if (fromUnit === 'kilometer' && toUnit === 'inch') result = inputValue * 39370.1;
+
+// Temperature conversions
+else if (fromUnit === 'celsius' && toUnit === 'fahrenheit') result = (inputValue * 9/5) + 32;
+else if (fromUnit === 'fahrenheit' && toUnit === 'celsius') result = (inputValue - 32) * 5/9;
+
+// Weight conversions
+else if (fromUnit === 'kilogram' && toUnit === 'pound') result = inputValue * 2.20462;
+else if (fromUnit === 'pound' && toUnit === 'kilogram') result = inputValue / 2.20462;
+
+// Default to same unit if no conversion found
+else result = inputValue;
+
+document.getElementById('converter-result').textContent =
+`${inputValue} ${fromUnit} = ${result.toFixed(4)} ${toUnit}`;
+}
+
+// Text Tools functions
+function processText() {
+const text = document.getElementById('text-input').value;
+const action = document.getElementById('text-action').value;
+let result = '';
+
+switch(action) {
+case 'uppercase':
+result = text.toUpperCase();
+break;
+case 'lowercase':
+result = text.toLowerCase();
+break;
+case 'capitalize':
+result = text.split(' ').map(word =>
+word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+).join(' ');
+break;
+case 'reverse':
+result = text.split('').reverse().join('');
+break;
+case 'count':
+result = `Character count: ${text.length}`;
+break;
+case 'remove-spaces':
+result = text.replace(/\s+/g, ' ').trim();
+break;
+default:
+result = text;
+}
+
+document.getElementById('text-result').textContent = result;
+}
+
+// Color Tools functions
+function updateColorPreview() {
+const color = document.getElementById('color-picker').value;
+document.getElementById('color-preview').style.backgroundColor = color;
+document.getElementById('color-result').textContent = color;
+}
+
+function getColorValue() {
+const color = document.getElementById('color-picker').value;
+const format = document.getElementById('color-format').value;
+
+if (format === 'hex') {
+document.getElementById('color-result').textContent = color;
+} else {
+// Convert HEX to RGB
+let r = parseInt(color.substr(1, 2), 16);
+let g = parseInt(color.substr(3, 2), 16);
+let b = parseInt(color.substr(5, 2), 16);
+
+if (format === 'rgb') {
+document.getElementById('color-result').textContent = `rgb(${r}, ${g}, ${b})`;
+} else if (format === 'hsl') {
+// Convert RGB to HSL
+r /= 255; g /= 255; b /= 255;
+const max = Math.max(r, g, b), min = Math.min(r, g, b);
+let h, s, l = (max + min) / 2;
+
+if (max === min) {
+h = s = 0; // achromatic
+} else {
+const d = max - min;
+s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+switch(max) {
+case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+case g: h = (b - r) / d + 2; break;
+case b: h = (r - g) / d + 4; break;
+}
+h /= 6;
+}
+
+h = Math.round(h * 360);
+s = Math.round(s * 100);
+l = Math.round(l * 100);
+
+document.getElementById('color-result').textContent = `hsl(${h}, ${s}%, ${l}%)`;
+}
+}
+}
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+// Initialize calculator display
+updateDisplay();
+
+// Initialize color preview
+document.getElementById('color-picker').addEventListener('input', updateColorPreview);
+updateColorPreview();
+
+// Set up sample conversions
+convertUnits();
+processText();
+});
+</script>
+</body>
+</html>
